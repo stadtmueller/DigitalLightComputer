@@ -1,10 +1,3 @@
-#import <avr/io.h>
-#import <avr/interrupt.h>
-#import <util/delay.h>
-#import <stdlib.h>
-#import "lcd.h"
-#import "lightpatterns.h"
-
 #ifndef F_CPU
 #define F_CPU 16000000
 #endif
@@ -34,6 +27,15 @@
 
 // Ext clk input / int. clk output.
 #define CLOCKIO PD3
+
+
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdlib.h>
+#include "lcd.h"
+#include "lightpatterns.h"
+
 
 // Global variables for the input system.
 uint8_t inputValueBuffer = 0;      // Value to be applied on Enter.
