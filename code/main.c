@@ -1,5 +1,5 @@
 #ifndef F_CPU
-#define F_CPU 16000000
+#define F_CPU 20000000
 #endif
 
 #define LIGHTDDR DDRA
@@ -55,11 +55,23 @@ uint8_t randomModeEnabled = 0; // 0 = program mode; 1 = random mode
 uint8_t clockSelected = 0;     // 0 = internal clock; 1 = external clock
 
 // Global variables for int. clock.
-uint8_t internalClockSpeedFactor = 10;
+uint8_t internalClockSpeed = 100;
 
 // Global variables for programming mode.
+// Explanation:
+// Each light pattern has 8 stages.
+// That means that one execution needs 8 beats.
+//
+// You can assign one light pattern to a slot.
+// Each slot is then (slotSpeed)-times executed.
+// This means that if you've assigned pattern 10
+// to slot 0 and pattern 23 to slot 1
+// with slotSpeed at 3 you will see
+// 3 x 10 and then 3 x 23
+// in a total of (8 * 3) * 2 = 48 beats.
 uint8_t slotSelected = 0;
 uint8_t slotSpeed = 3;
+
 
 
 // Functions.
@@ -70,10 +82,8 @@ int randomInt()
 
 void enableInternalClock()
 {
-	PORTC &= ~(1<<PC6);	  // Disable ext. clock signal relay.
-	GICR &= ~(1<<INT1); 	  // Disable ext. interrupts on INT1.
-	DDRD |= (1<<CLOCKIO); // Change pin direction to maintain clock monitor LED.
-	// Start Timer with internalClockSpeedFactor.
+	PORTC &= ~(1<<PC6);   			     // Disable ext. clock signal relay.
+	TCCR2B |= (1<<CA22) | (1<<CA21) | (1<<CA20); // Start internal clock timer.
 
 	lcd_clear();
 	lcd_setcursor( 0, 1 );
@@ -84,10 +94,8 @@ void enableInternalClock()
 
 void enableExternalClock()
 {
-	// Stop Timer.
-	PORTC |= (1<<PC6);
-	DDRD &= ~(1<<CLOCKIO);
-	GICR |= (1<<INT1);	   // Enable ext. interrupts on INT1.
+	PORTC |= (1<<PC6);				  // Enable ext. clock signal relay.
+	TCCR2B &= ~( (1<<CA22) | (1<<CA21) | (1<<CA20) ); // Stop internal clock timer.
 
 	lcd_clear();
 	lcd_setcursor( 0, 1 );
@@ -103,9 +111,9 @@ void numberButtonPressed( uint8_t number )
 
 	inputValuePlaceHolder = number * digitPositionFactor;
 
-	digitPoitionFactor *= 10;
+	digitPositionFactor *= 10;
 
-	if( digitPoitionFactor == 100 )
+	if( digitPositionFactor == 100 )
 		digitPositionFactor = 1;
 }
 
@@ -119,8 +127,11 @@ void enterButtonPressed()
 */
 	switch( lastButtonPressed )
 	{
-		case 0: return;
-		case 1: internalClockSpeedFactor = inputValueBuffer;
+		case 0: break;
+		case 1: if( inputValueBuffer > 20 )
+				break;
+			else
+				internalClockSpeed = 10 * inputValueBuffer;
 			break;
 		case 2: slotSelected = inputValueBuffer;
 			break;
@@ -148,9 +159,14 @@ int main( void )
 	TCNT0 = 0;
 
 	// Set up timer for internal clock source.
+	// Initially stoped:
+	TCCR2B &= ~( (1<<CA22) | (1<<CA21) | (1<<CA20) ); // Prescaler clk/1024
+	TIMSK2 |= (1<<TOIE); 				  // Enable overflow interrupt.
+	TCNT2 = 0;
 
 	// Setup external interrupt.
-	MCUCR |= (1<<ISC11); // Interrupt reuest on falling edge on INT1.
+	EICRA |= (1<<ISC11); // Interrupt reuest on falling edge on INT1.
+	EIMSK |= (1<<INT1);  // Enable ext. interrupt on INT1.
 
 	sei();		     // Enable global interrupts.
 
@@ -175,7 +191,7 @@ int main( void )
 		{
 			switch( multiplexPosition )
 			{
-				case 0: modeButtonPressed(); break;    // * Ran/Porg Mode
+				case 0: starButtonPressed(); break;    // *
 				case 1: numberButtonPressed(7); break; // 7
 				case 2: numberButtonPressed(4); break; // 4
 				case 3: numberButtonPressed(1); break; // 1
@@ -204,6 +220,7 @@ int main( void )
 			}
 		}
 		// ------------------------------------------------------------
+
 
 		// ------------------------------------------------------------
 		// Other control buttons.
@@ -280,7 +297,7 @@ int main( void )
 			if( testModeEnabled = 1 )
 			{
 				testmodeEnabled = 0;
-				// Set pattern to inital (1).
+				// Set pattern to test (0).
 			}
 			else
 			{
@@ -289,8 +306,6 @@ int main( void )
 				lcd_setcursor( 0, 1 );
 				lcd_string( "Testing now..." );
 
-				enableInternalClock();
-				internalClockSpeedFactor = 10;
 				// Set pattern to test (0).
 			}
 		}
@@ -313,13 +328,28 @@ ISR( TIMER0_OVF_vect )
 }
 
 // Internal Clock
-ISR( )
+ISR( TIMER2_OVF_vect )
 {
+	// This will be called so fast that the
+	// resolution must be enhanced by only
+	// reacting every time counter hits
+	// internalClockSpeed.
+	static uint8_t counter = 0;
 
+	counter++;
+
+	if( counter == internalClockSpeed )
+	{
+		PORTD |= (1<<PD3);
+		counter = 0;
+	}
 }
 
 // Beatshifter
 ISR( INT1_vect )
 {
+	// Call current function.
 
+	if( clockSelected == 0 ) // Clear pin when internal clock selected.
+		PORTD &= ~(1<<PD3);
 }
