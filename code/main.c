@@ -146,12 +146,11 @@ void enterButtonPressed()
 int main( void )
 {
 	// Set pin directions.
-	LIGHTDDR = 0b11111111;
-	CONTROLDDR &= ~( (1<<SLOTSPEED) | (1<<SLOTSEL) |
-			 (1<<INTCLKSPEED) | (1<<MODESEL) | (1<<CLKSEL) );
-	DDRC &= ~(1<<TESTENABLE);
-	DDRC |= (1<<EXTCLKENABLE);
-	KEYBOARDDDR = 0b11110000;
+	LIGHTDDR = 0b11111111;					// Main output port connected to driver.
+	DDRC |= (1<<EXTCLKENABLE);				// Relay pin to enable ext. clock.
+	DDRC &= ~(1<<TESTENABLE);				// Test button input.
+	CONTROLDDR &= ~( (1<<SLOTSPEED)   | (1<<SLOTSEL) |	// Other control inputs.
+		(1<<INTCLKSPEED) | (1<<MODESEL) | (1<<CLKSEL) );
 
 	// Set up multiplex timer.
 	TCCR0B |= (1<<CA01); // Prescaler clk / 8.
@@ -159,8 +158,7 @@ int main( void )
 	TCNT0 = 0;
 
 	// Set up timer for internal clock source.
-	// Initially stoped:
-	TCCR2B &= ~( (1<<CA22) | (1<<CA21) | (1<<CA20) ); // Prescaler clk/1024
+	TCCR2B &= ~( (1<<CA22) | (1<<CA21) | (1<<CA20) ); // Prescaler clk/1024 (initially stoped).
 	TIMSK2 |= (1<<TOIE); 				  // Enable overflow interrupt.
 	TCNT2 = 0;
 
@@ -168,25 +166,24 @@ int main( void )
 	EICRA |= (1<<ISC11); // Interrupt reuest on falling edge on INT1.
 	EIMSK |= (1<<INT1);  // Enable ext. interrupt on INT1.
 
-	sei();		     // Enable global interrupts.
+	sei();		     // Enable interrupts generally.
 
 	while( true )
 	{
 		// Check input pins for button-presses.
-
-
+		// Debounce by checking if button is still held down
+		// 20ms after first detection.
 		// -----------------------------------------------
 		// Demultiplex keyboard: 
 		// Keyboard grid:
-		/*          ___________  Multiplexposition:
+		/**          __________   Multiplexposition:
 			PD7 |1 | 2 | 3|  3
 		  	PD6 |4 | 5 | 6|  2
 		  	PD5 |7 | 8 | 9|  1
 		  	PD4 |* | 0 | #|  0
 			    -----------
-			    PD0 PD1 PD2
-		*/
-
+			    PD0 PD1 PD2	   
+		**/
 		if( PIND & (1<<PD0) )
 		{
 			switch( multiplexPosition )
@@ -228,65 +225,105 @@ int main( void )
 		// Clock select.
 		if( !(PINB & (1<<CLKSEL)) )
 		{
-			// 0 = internal clock; 1 = external clock
-			if( clockSelected == 0 )
+			_dely_ms( 20 );
+
+			if( !(PINB & (1<<CLKSEL)) )
 			{
-				enableExternalClock(); // Change clock source and update display.
-				clockSelected = 1;
+				// 0 = internal clock; 1 = external clock
+				if( clockSelected == 0 )
+				{
+					enableExternalClock(); // Change clock source and update display.
+					clockSelected = 1;
+				}
+				else
+				{
+					enableInternalClock();
+					clockSelected = 0;
+				}
 			}
-			else
-			{
-				enableInternalClock();
-				clockSelected = 0;
-			}
+
+			while( !(PINB & (1<<CLKSEL)) )
+				continue;
 		}
 
 
 		// Ran/Prog mode select.
 		if( !(PINB & (1<<MODESEL)) )
 		{
-			// 0 = program mode; 1 = random mode
-			if( randomModeEnabled = 1 )
+			_delay_ms( 20 );
+
+			if( !(PINB & (1<<MODESEL)) )
 			{
-				randomModeEnabled = 0;
+				// 0 = program mode; 1 = random mode
+				if( randomModeEnabled = 1 )
+				{
+					randomModeEnabled = 0;
+				}
+				else
+				{
+					randomModeEnabled = 1;
+				}
 			}
-			else
-			{
-				randomModeEnabled = 1;
-			}
+
+			while( !(PINB & (1<<MODESEL)) )
+				continue;
 		}
 
 
 		// Internal clock speed factor.
 		if( !(PINB & (1<<INTCLKSPEED)) )
 		{
-			lcd_clear();
-			lcd_setcursor( 0, 1 );
-			lcd_string( "Clock speed:" );
-			lcd_setcursor( 0, 2 );
-			lcd_out( internalClockSpeedFactor );
+			_delay_ms( 20 );
+
+			if( !(PINB & (1<<INTCLKSPEED)) )
+			{
+				lcd_clear();
+				lcd_setcursor( 0, 1 );
+				lcd_string( "Clock speed:" );
+				lcd_setcursor( 0, 2 );
+				lcd_out( internalClockSpeedFactor );
+			}
+
+			while( !(PINB & (1<<INTCLKSPEED)) )
+				continue;
 		}
 
 
 		// Slot select.
 		if( !(PINB & (1<<SLOTSEL)) )
 		{
-			lcd_clear();
-			lcd_setcursor( 0, 1 );
-			lcd_string( "Slot:" );
-			lcd_setcursor( 0, 2 );
-			lcd_out( slotSelected );
+			_delay_ms( 20 );
+
+			if( !(PINB & (1<<SLOTSEL)) )
+			{
+				lcd_clear();
+				lcd_setcursor( 0, 1 );
+				lcd_string( "Slot:" );
+				lcd_setcursor( 0, 2 );
+				lcd_out( slotSelected );
+			}
+
+			while( !(PINB & (1<<SLOTSEL)) )
+				continue;
 		}
 
 
 		// Slot speed.
 		if( !(PINB & (1<<SLOTSPEED)) )
 		{
-			lcd_clear();
-			lcd_setcursor( 0, 1 );
-			lcd_string( "Slot speed:" );
-			lcd_setcursor( 0, 2 );
-			lcd_out( slotSpeed );
+			_delay_ms( 20 );
+
+			if( !(PINB & (1<<SLOTSPEED)) )
+			{
+				lcd_clear();
+				lcd_setcursor( 0, 1 );
+				lcd_string( "Slot speed:" );
+				lcd_setcursor( 0, 2 );
+				lcd_out( slotSpeed );
+			}
+
+			while( !(PINB & (1<<SLOTSPEED)) )
+				continue;
 		}
 
 		// Test.
@@ -294,20 +331,27 @@ int main( void )
 		{
 			static int oldModeRecovery = 0;
 
-			if( testModeEnabled = 1 )
-			{
-				testmodeEnabled = 0;
-				// Set pattern to test (0).
-			}
-			else
-			{
-				testModeEnabled = 1;
-				lcd_clear();
-				lcd_setcursor( 0, 1 );
-				lcd_string( "Testing now..." );
+			_delay_ms( 20 );
 
-				// Set pattern to test (0).
+			if( !(PINB & (1<<TESTENABLE)) )
+			{
+				if( testModeEnabled = 1 )
+				{
+					testmodeEnabled = 0;
+					// Do some fallback.
+				}
+				else
+				{
+					testModeEnabled = 1;
+					lcd_clear();
+					lcd_setcursor( 0, 1 );
+					lcd_string( "Testing now..." );
+					// Set pattern to test (0).
+				}
 			}
+
+			while( !(PINB & (1<<TESTENABLE)) )
+				continue;
 		}
 
 		// -------------------------------------------------------------
