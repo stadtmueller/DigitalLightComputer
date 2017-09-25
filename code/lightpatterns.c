@@ -599,3 +599,1095 @@ int pattern21()
 
         return ret;
 }
+
+int pattern22()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00111100; break;
+		case 6: LIGHTPORT = 0b11111111; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b11000011; break;
+                case 3: LIGHTPORT = 0b10000001; break;
+                case 2: LIGHTPORT = 0b01000010; break;
+                case 1: LIGHTPORT = 0b00100100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern23()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b01111110; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern24()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b10000001; break;
+		case 5: LIGHTPORT = 0b11000011; break;
+		case 4: LIGHTPORT = 0b11100111; break;
+                case 3: LIGHTPORT = 0b11111111; break;
+                case 2: LIGHTPORT = 0b01111110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern25()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b11000011; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b01111110; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b10011001; break;
+                case 1: LIGHTPORT = 0b11011011; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern26()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b10000001; break;
+		case 5: LIGHTPORT = 0b10000001; break;
+		case 4: LIGHTPORT = 0b10000001; break;
+                case 3: LIGHTPORT = 0b11000011; break;
+                case 2: LIGHTPORT = 0b01100110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern27()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b11000011; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b00000000; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b00000000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern28()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00000000; break;
+		case 6: LIGHTPORT = 0b00011000; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b01111110; break;
+                case 3: LIGHTPORT = 0b11111111; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern29()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b11111111; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00111100; break;
+                case 3: LIGHTPORT = 0b11111111; break;
+                case 2: LIGHTPORT = 0b11111111; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern30()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b01000010; break;
+		case 5: LIGHTPORT = 0b00100100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b01111110; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern31()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11000011; break;
+		case 6: LIGHTPORT = 0b01100110; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b01111110; break;
+                case 1: LIGHTPORT = 0b11111111; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern32()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11000011; break;
+		case 6: LIGHTPORT = 0b01100110; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00100100; break;
+                case 3: LIGHTPORT = 0b01000010; break;
+                case 2: LIGHTPORT = 0b10000001; break;
+                case 1: LIGHTPORT = 0b01000010; break;
+                case 0: LIGHTPORT = 0b00100100; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern33()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b11000011; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00100100; break;
+                case 1: LIGHTPORT = 0b01000010; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern34()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11100111; break;
+		case 6: LIGHTPORT = 0b11100111; break;
+		case 5: LIGHTPORT = 0b00011000; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b11000011; break;
+                case 2: LIGHTPORT = 0b11000011; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00111100; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern35()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00000000; break;
+		case 6: LIGHTPORT = 0b11111111; break;
+		case 5: LIGHTPORT = 0b00000000; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b00000000; break;
+                case 2: LIGHTPORT = 0b00000000; break;
+                case 1: LIGHTPORT = 0b11111111; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern36()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b00011000; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b01111110; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern37()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00011000; break;
+		case 6: LIGHTPORT = 0b00111100; break;
+		case 5: LIGHTPORT = 0b01100110; break;
+		case 4: LIGHTPORT = 0b11000011; break;
+                case 3: LIGHTPORT = 0b10000001; break;
+                case 2: LIGHTPORT = 0b01000010; break;
+                case 1: LIGHTPORT = 0b00100100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern38()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b11111111; break;
+		case 5: LIGHTPORT = 0b01100110; break;
+		case 4: LIGHTPORT = 0b01100110; break;
+                case 3: LIGHTPORT = 0b11111111; break;
+                case 2: LIGHTPORT = 0b11111111; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern39()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00111100; break;
+		case 6: LIGHTPORT = 0b00111100; break;
+		case 5: LIGHTPORT = 0b00000000; break;
+		case 4: LIGHTPORT = 0b01111110; break;
+                case 3: LIGHTPORT = 0b01111110; break;
+                case 2: LIGHTPORT = 0b00000000; break;
+                case 1: LIGHTPORT = 0b11111111; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern40()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00000000; break;
+		case 6: LIGHTPORT = 0b00011000; break;
+		case 5: LIGHTPORT = 0b00000000; break;
+		case 4: LIGHTPORT = 0b00111100; break;
+                case 3: LIGHTPORT = 0b00000000; break;
+                case 2: LIGHTPORT = 0b01111110; break;
+                case 1: LIGHTPORT = 0b00000000; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern41()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00011000; break;
+		case 6: LIGHTPORT = 0b00000000; break;
+		case 5: LIGHTPORT = 0b00011000; break;
+		case 4: LIGHTPORT = 0b00000000; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b01111110; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern42()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11000011; break;
+		case 6: LIGHTPORT = 0b01100110; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern43()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b11000011; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b01100110; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b01100110; break;
+                case 0: LIGHTPORT = 0b11000011; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern44()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00100100; break;
+		case 6: LIGHTPORT = 0b10000001; break;
+		case 5: LIGHTPORT = 0b01011010; break;
+		case 4: LIGHTPORT = 0b10100101; break;
+                case 3: LIGHTPORT = 0b01000010; break;
+                case 2: LIGHTPORT = 0b10011001; break;
+                case 1: LIGHTPORT = 0b01100110; break;
+                case 0: LIGHTPORT = 0b10100101; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern45()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b01100110; break;
+		case 6: LIGHTPORT = 0b10000001; break;
+		case 5: LIGHTPORT = 0b01100110; break;
+		case 4: LIGHTPORT = 0b10000001; break;
+                case 3: LIGHTPORT = 0b01100110; break;
+                case 2: LIGHTPORT = 0b10000001; break;
+                case 1: LIGHTPORT = 0b01100110; break;
+                case 0: LIGHTPORT = 0b10000001; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern46()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00011000; break;
+		case 6: LIGHTPORT = 0b00011000; break;
+		case 5: LIGHTPORT = 0b00100100; break;
+		case 4: LIGHTPORT = 0b00111100; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b11000011; break;
+                case 1: LIGHTPORT = 0b11111111; break;
+                case 0: LIGHTPORT = 0b11111111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern47()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11000011; break;
+		case 6: LIGHTPORT = 0b01100110; break;
+		case 5: LIGHTPORT = 0b00100100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b10011001; break;
+                case 2: LIGHTPORT = 0b00100100; break;
+                case 1: LIGHTPORT = 0b01100110; break;
+                case 0: LIGHTPORT = 0b11011011; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern48()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b00000000; break;
+		case 5: LIGHTPORT = 0b10000001; break;
+		case 4: LIGHTPORT = 0b00000000; break;
+                case 3: LIGHTPORT = 0b10000001; break;
+                case 2: LIGHTPORT = 0b01100110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern49()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b11000011; break;
+		case 5: LIGHTPORT = 0b11100111; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b01111110; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b11100111; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern50()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b00011000; break;
+		case 6: LIGHTPORT = 0b00111100; break;
+		case 5: LIGHTPORT = 0b01111110; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b01111110; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00111100; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern51()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10011001; break;
+		case 6: LIGHTPORT = 0b10011001; break;
+		case 5: LIGHTPORT = 0b10011001; break;
+		case 4: LIGHTPORT = 0b10011001; break;
+                case 3: LIGHTPORT = 0b01100110; break;
+                case 2: LIGHTPORT = 0b01100110; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern52()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10011001; break;
+		case 6: LIGHTPORT = 0b10011001; break;
+		case 5: LIGHTPORT = 0b10011001; break;
+		case 4: LIGHTPORT = 0b10011001; break;
+                case 3: LIGHTPORT = 0b10011001; break;
+                case 2: LIGHTPORT = 0b01111110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern53()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10011001; break;
+		case 6: LIGHTPORT = 0b10011001; break;
+		case 5: LIGHTPORT = 0b10011001; break;
+		case 4: LIGHTPORT = 0b10011001; break;
+                case 3: LIGHTPORT = 0b11100111; break;
+                case 2: LIGHTPORT = 0b01100110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern54()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10011001; break;
+		case 6: LIGHTPORT = 0b10011001; break;
+		case 5: LIGHTPORT = 0b10111101; break;
+		case 4: LIGHTPORT = 0b10100101; break;
+                case 3: LIGHTPORT = 0b11100111; break;
+                case 2: LIGHTPORT = 0b01100110; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern55()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11000011; break;
+		case 6: LIGHTPORT = 0b00111100; break;
+		case 5: LIGHTPORT = 0b11000011; break;
+		case 4: LIGHTPORT = 0b00111100; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b01100110; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern56()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b10000001; break;
+		case 6: LIGHTPORT = 0b10011001; break;
+		case 5: LIGHTPORT = 0b10111101; break;
+		case 4: LIGHTPORT = 0b11111111; break;
+                case 3: LIGHTPORT = 0b10000001; break;
+                case 2: LIGHTPORT = 0b01000010; break;
+                case 1: LIGHTPORT = 0b00100100; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern57()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b00111100; break;
+		case 5: LIGHTPORT = 0b00011000; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern58()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11111111; break;
+		case 6: LIGHTPORT = 0b01111110; break;
+		case 5: LIGHTPORT = 0b00111100; break;
+		case 4: LIGHTPORT = 0b00011000; break;
+                case 3: LIGHTPORT = 0b00011000; break;
+                case 2: LIGHTPORT = 0b00011000; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern59()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11100111; break;
+		case 6: LIGHTPORT = 0b01100110; break;
+		case 5: LIGHTPORT = 0b00100100; break;
+		case 4: LIGHTPORT = 0b00111100; break;
+                case 3: LIGHTPORT = 0b00111100; break;
+                case 2: LIGHTPORT = 0b00111100; break;
+                case 1: LIGHTPORT = 0b00111100; break;
+                case 0: LIGHTPORT = 0b01100110; break;
+	}
+
+	step++;
+
+        return ret;
+}
+
+int pattern60()
+{
+	static int step = 0;
+        int ret = 0;
+
+        if( step == 8 )
+        {
+                step = 0;
+                ret = 1;
+        }
+
+        switch( step )
+        {
+		case 7: LIGHTPORT = 0b11100111; break;
+		case 6: LIGHTPORT = 0b01000010; break;
+		case 5: LIGHTPORT = 0b01000010; break;
+		case 4: LIGHTPORT = 0b01000010; break;
+                case 3: LIGHTPORT = 0b00100100; break;
+                case 2: LIGHTPORT = 0b00100100; break;
+                case 1: LIGHTPORT = 0b00011000; break;
+                case 0: LIGHTPORT = 0b00011000; break;
+	}
+
+	step++;
+
+        return ret;
+}
