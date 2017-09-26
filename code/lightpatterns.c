@@ -108,6 +108,8 @@ lightPatterns[99] = pattern99;
 int pattern0()
 {
 	LIGHTPORT = 0b00000000;
+
+	return 1;
 }
 
 // Single up counter.

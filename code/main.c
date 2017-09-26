@@ -1,6 +1,12 @@
-#ifndef F_CPU
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdlib.h>
+#include "lcd.h"
+#include "lightpatterns.h"
+
+
 #define F_CPU 20000000
-#endif
 
 #define LIGHTDDR DDRA
 #define LIGHTPORT PORTA
@@ -29,28 +35,25 @@
 #define CLOCKIO PD3
 
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
-#include <stdlib.h>
-#include "lcd.h"
-#include "lightpatterns.h"
-
+// Global variables for lightpattern processing
+// (slotSpeed is used for random and programming mode).
+uint8_t slotSpeed = 3;
 
 // Global variables for the input system.
 uint8_t inputValueBuffer = 0;      // Value to be applied on Enter.
-uint8_t digitPositionFactor = 1;   // To determine wether input is first or second digit.
+uint8_t digitPositionFactor = 1;   // Find out if input is first or second digit.
 uint8_t multiplexPosition = 0;
 uint8_t lastButtonPressed = 0;     // Last button pressed to apply correct values on Enter.
-// Last button numbering:
-/* 0: No button (initial, test enable).
+/*
+   Last button numbering: 
+   0: No button (initial, test enable).
    1: Int. clock speed.
    2: Slot select.
    3: Slot speed.
 */
 
 // Global variables for mode switching.
-uint8_t testModeEnabled   = 0; // 0 = normal mode; 1 = test mode
+uint8_t testModeEnabled = 0;   // 0 = normal mode; 1 = test mode
 uint8_t randomModeEnabled = 0; // 0 = program mode; 1 = random mode
 uint8_t clockSelected = 0;     // 0 = internal clock; 1 = external clock
 
@@ -63,14 +66,14 @@ uint8_t internalClockSpeed = 100;
 // That means that one execution needs 8 beats.
 //
 // You can assign one light pattern to a slot.
-// Each slot is then (slotSpeed)-times executed.
+// Each slot is then (patternSpeed)-times executed.
 // This means that if you've assigned pattern 10
 // to slot 0 and pattern 23 to slot 1
-// with slotSpeed at 3 you will see
+// with patternSpeed at 3 you will see
 // 3 x 10 and then 3 x 23
 // in a total of (8 * 3) * 2 = 48 beats.
 uint8_t slotSelected = 0;
-uint8_t slotSpeed = 3;
+uint8_t slots[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
 
@@ -389,11 +392,26 @@ ISR( TIMER2_OVF_vect )
 	}
 }
 
-// Beatshifter
+// Lightpattern processing.
 ISR( INT1_vect )
 {
-	// Call current function.
+	static uint8_t status = 0;
+	static uint8_t slotCounter = 0;
+
+	status = (*lightPatterns[selectedPattern])();  // Call current function.
+
+	if( status )
+	{
+		slotCounter++;
+
+		if( slotCounter == slotSpeed )
+		{
+			
 
 	if( clockSelected == 0 ) // Clear pin when internal clock selected.
 		PORTD &= ~(1<<PD3);
 }
+
+
+
+
